@@ -1,14 +1,16 @@
 ---
 title: "DAT301Project1Slides"
 author: "Jack Hosier, Benjamin Delafuente, Charlotte Farrell"
-date: "2024-03-13"
+date: "2024-04-13"
 output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(dplyr)
-library(ggplot2)
+library(reticulate)
+py_install("pandas")
+py_install("pyplot")
+py_install("matplotlib")
 ```
 
 ## Inflation in the World
@@ -26,21 +28,19 @@ By: Group H (Jack Hosier, Charlotte Farrell, Ben Delafuente)
 - This code will read our CSV file, "Global inflation data", and pick the countries that we will be analyzing and finding their inflation rates from the years 2000 to 2024
 - We use a select function to get the years wanted and the filter function to get the country that we chose
 
-```{r cars, echo = TRUE}
+```{python cars, echo = TRUE}
 
-inflationDF = read.csv("global_inflation_data.csv",sep=",",header=TRUE)
+import pandas as pd
+inflationData = pd.read_csv("global_inflation_data.csv",sep=",")
 
-USInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "United States")
+inflationDF = pd.DataFrame(inflationData)
 
-CanadaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Canada")
-
-ChinaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "China, People's Republic of")
-
-IndiaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "India")
-
-MexicoInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Mexico")
-
-RussiaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Russian Federation")
+USInflation = inflationDF.loc[inflationDF['country_name'] == "United States", "2000":"2024"]
+CanadaInflation = inflationDF.loc[inflationDF['country_name'] == "Canada", "2000":"2024"] 
+ChinaInflation = inflationDF.loc[inflationDF['country_name'] == "China, People's Republic of", "2000":"2024"]
+IndiaInflation = inflationDF.loc[inflationDF['country_name'] == "India", "2000":"2024"]
+MexicoInflation = inflationDF.loc[inflationDF['country_name'] == "Mexico", "2000":"2024"]
+RussiaInflation = inflationDF.loc[inflationDF['country_name'] == "Russian Federation", "2000":"2024"]
 
 ```
 
