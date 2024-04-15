@@ -1,0 +1,310 @@
+---
+title: "DAT301Project1Slides"
+author: "Jack Hosier, Benjamin Delafuente, Charlotte Farrell"
+date: "2024-03-13"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(ggplot2)
+```
+
+## Inflation in the World
+
+By: Group H (Jack Hosier, Charlotte Farrell, Ben Delafuente)
+
+## Intro Slide 
+
+- For this project, we are going to be examining inflation rates of the United States, Canada, Mexico, China, India and Russia over the course of the 21st Century (2000 to 2024). 
+
+- For each country, we will calculate the maximum and minimum inflation rates over this period, as well as the mean and standard deviation and extrapolate why those are with real-world events. 
+
+## Data Sorting
+
+- This code will read our CSV file, "Global inflation data", and pick the countries that we will be analyzing and finding their inflation rates from the years 2000 to 2024
+- We use a select function to get the years wanted and the filter function to get the country that we chose
+
+```{r cars, echo = TRUE}
+
+inflationDF = read.csv("global_inflation_data.csv",sep=",",header=TRUE)
+
+USInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "United States")
+
+CanadaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Canada")
+
+ChinaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "China, People's Republic of")
+
+IndiaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "India")
+
+MexicoInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Mexico")
+
+RussiaInflation = inflationDF %>% select(X2000:X2024) %>% filter(inflationDF$country_name == "Russian Federation")
+
+```
+
+## Inflation Rates of the US (2000-2024) Max Rate: (2022,8)
+```{r}
+# Prepare data for plotting
+years <- seq(2000, 2024)
+US_data <- data.frame(year = years, inflation_rate = unlist(USInflation))
+
+# Plot line graph
+ggplot(US_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(title = "Inflation in United States (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+```
+
+## Inflation Rates of Russia (2000-2024) Max Rate: (2001,21.5)
+```{r}
+
+# Prepare data for plotting
+years <- seq(2000, 2024)
+Russia_data <- data.frame(year = years, inflation_rate = unlist(RussiaInflation))
+
+# Plot line graph
+ggplot(Russia_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "Red") +
+  geom_point(color = "Red") +
+  labs(title = "Inflation in Russia (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+
+```
+
+## Inflation Rates of Mexico (2000-2024) Max Rate: (2000,9.5)
+```{r}
+
+# Prepare data for plotting
+years <- seq(2000, 2024)
+Mexico_data <- data.frame(year = years, inflation_rate = unlist(MexicoInflation))
+
+# Plot line graph
+ggplot(Mexico_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "green") +
+  geom_point(color = "green") +
+  labs(title = "Inflation in Mexico (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+```
+
+## Inflation Rates of India (2000-2024) Max Rate: (2009, 12.3)
+```{r}
+# Prepare data for plotting
+years <- seq(2000, 2024)
+India_data <- data.frame(year = years, inflation_rate = unlist(IndiaInflation))
+
+# Plot line graph
+ggplot(India_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "Purple") +
+  geom_point(color = "Purple") +
+  labs(title = "Inflation in India (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+```
+
+## Inflation Rates of China (2000-2024) Max Rate: (2008,5.9)
+```{r}
+
+# Prepare data for plotting
+years <- seq(2000, 2024)
+China_data <- data.frame(year = years, inflation_rate = unlist(ChinaInflation))
+
+# Plot line graph
+ggplot(China_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "Orange") +
+  geom_point(color = "Orange") +
+  labs(title = "Inflation in China (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+
+```
+
+## Inflation Rates of Canada (2000-2024) Max Rate: (2022,6.8)
+```{r}
+# Prepare data for plotting
+years <- seq(2000, 2024)
+Canada_data <- data.frame(year = years, inflation_rate = unlist(CanadaInflation))
+
+# Plot line graph
+ggplot(Canada_data, aes(x = year, y = inflation_rate)) +
+  geom_line(color = "pink") +
+  geom_point(color = "pink") +
+  labs(title = "Inflation in Canada (2000-2024)",
+       x = "Year",
+       y = "Inflation Rate") +
+  theme_minimal()
+```
+
+## Max Inflation Rates 
+
+- These are the calculations for the maximum inflation rates 
+
+```{r, echo = TRUE}
+
+# Calculate maximum inflation rates
+USMaxInflation <- max(USInflation)
+CanadaMaxInflation <- max(CanadaInflation)
+ChinaMaxInflation <- max(ChinaInflation)
+IndiaMaxInflation <- max(IndiaInflation)
+MexicoMaxInflation <- max(MexicoInflation)
+RussiaMaxInflation <- max(RussiaInflation)
+
+# Create a vector of maximum inflation rates
+maxInflationRates <- c(USMaxInflation, CanadaMaxInflation, ChinaMaxInflation, IndiaMaxInflation, MexicoMaxInflation, RussiaMaxInflation)
+
+# Create a dataframe of all maximum inflation rates 
+maxInflationDF <- data.frame(country = c("USA", "Canada", "China", "India", "Mexico", "Russia"), rates = maxInflationRates)
+
+
+```
+
+## Max Inflation Rates Bar Graph 
+```{r, echo = FALSE}
+library(ggplot2)
+ggplot(maxInflationDF, aes(x = country, y = rates, fill = country)) + 
+  geom_bar(stat = "identity") + 
+  geom_text(aes(label = rates), vjust = -0.3)
+```
+
+## Explanation of Max Inflation Rates 
+- The max inflation rates for the USA and Canada were recorded in 2022, in the midst of the vast supply-chain disruptions caused by the COVID-19 Pandemic. Demand also caused products to become more scarce.
+- China had its max inflation rates in 2008, when the excess demand grew largely.
+- India had a man inflation rate in 2009, this was from soaring prices in gas and food.
+- Mexico had its maximum inflation rate in 2000, which was lowering throughout the years.
+- Russia had its max inflation rate in 2001, this would have been due to hyperinflation and heating shortages.
+
+
+
+## Min Inflation rates 
+
+- These are the calculations for the minimum inflation rates 
+
+```{r minInflationRates, echo = TRUE}
+
+USminInflation = min(USInflation) #this was in 2009 
+CanadaMinInflation = min(CanadaInflation) #this was in 2009
+ChinaMinInflation = min(ChinaInflation) #this was in 2009
+IndiaMinInflation = min(IndiaInflation) #this was in 2018
+MexicoMinInflation = min(MexicoInflation) #this was in 2015
+RussiaMinInflation = min(RussiaInflation) #this was in 2018 
+
+minInflationRates = c(USminInflation, CanadaMinInflation, ChinaMinInflation, IndiaMinInflation, MexicoMinInflation, RussiaMinInflation)
+
+#dataframe of all min inflation rates 
+minInflationDF <- data.frame(country = c("USA", "Canada", "China", "India", "Mexico", "Russia"), rates = minInflationRates)
+
+```
+
+## Min Inflation rates Bar graph using ggplot2 
+
+```{r minInflationRatesPlot}
+library(ggplot2)
+ggplot(minInflationDF, aes(x = country, y = rates, fill = country)) + geom_bar(stat = "identity") + geom_text(aes(label = rates), vjust = -0.3)
+```
+## Explanation of Min Inflation rates 
+
+- The min inflation rates in the USA, Canada and China are all in 2009, 1 year after the 2008 Great Recession. 
+- The min inflation rate in Mexico was in 2015, which was caused by a steep reduction in mobile phone charges and declining prices for energy products and certain agricultural goods. 
+- The min inflation rates for India was in 2018. 
+- Russia's minimum inflation rate was recorded in 2001, when it was electing a new president for the first time since the collapse of the USSR a decade earlier. 
+
+## Mean of the Inflation Rates
+
+```{r mean}
+
+#This code will take the inflation of each year from 2000 to 2024 and divide that number by 24, in order to get the average of the inflation rates
+
+USMeanInflation <- (3.4 + 2.8 + 1.6 + 2.3 + 2.7 + 3.4 + 3.2 + 2.9 + 3.8 + -0.3 + 1.6 + 3.1 + 2.1 + 1.5 + 1.6 + 0.1 + 1.3 + 2.1 + 2.4 + 1.8 + 1.3 + 4.7 + 8 + 4.1 + 2.8) / 24
+
+
+CanadaMeanInflation <- (2.7 + 2.5 + 2.3 + 2.8 + 1.9 + 2.2 + 2 + 2.1 + 2.4 + 0.3 + 1.8 + 2.9 + 1.5 + 0.9 + 1.9 + 1.1 + 1.4 + 1.6 + 2.3 + 1.9 + 0.7 + 3.4 + 6.8 + 3.6 + 2.4) / 24
+
+
+ChinaMeanInflation <- (0.4 + 0.7 + -0.7 + 1.1 + 3.8 + 1.8 + 1.6 + 4.8 + 5.9 + -0.7 + 3.2 + 5.5 + 2.6 + 2.6 + 2.1 + 1.5 + 2.1 + 1.5 + 1.9 + 2.9 + 2.5 + 0.9 + 1.9 + 0.7 + 1.7) / 24
+
+
+IndiaMeanInflation <- (3.8 + 4.3 + 4 + 3.9 + 3.8 + 4.4 + 6.7 + 6.2 + 9.1 + 12.3 + 10.5 + 9.5 + 10 + 9.4 + 5.8 + 4.9 + 4.5 + 3.6 + 3.4 + 4.8 + 6.2 + 5.5 + 6.7 + 5.5 + 4.6) / 24
+
+
+MexicoMeanInflation <- (9.5 + 6.4 + 5 + 4.6 + 4.7 + 4 + 3.6 + 4 + 5.1 + 5.3 + 4.2 + 3.4 + 4.1 + 3.8 + 4 + 2.7 + 2.8 + 6 + 4.9 + 3.6 + 3.4 + 5.7 + 7.9 + 5.5 + 3.8) / 24
+
+
+RussiaMeanInflation <- (20. + 21. + 15.8 + 13.7 + 10.9 + 12.7 + 9.7 + 9 + 14.1 + 11.6 + 6.8 + 8.4 + 5.1 + 6.8 + 7.8 + 15.5 + 7 + 3.7 + 2.9 + 4.5 + 3.4 + 6.7 + 13.8 + 5.3 + 6.3) / 24
+
+```
+
+#Create a vector of mean inflation rates
+
+```{r meanInflationRates}
+meanInflationRates <- c(USMeanInflation, CanadaMeanInflation, ChinaMeanInflation, IndiaMeanInflation, MexicoMeanInflation, RussiaMeanInflation)
+```
+
+#Create a Dataframe of means
+
+```{r, echo = FALSE}
+meanDF <- data.frame(country = c("USA", "Canada", "China", "India", "Mexico", "Russia"), means = meanInflationRates)
+head(meanDF)
+```
+- The means (represented as $\mu$) show the average inflation rate of the chosen countries over the span of the year 2000 to 2024.
+- Overall, Russia has the highest inflation rate at 10.10417 and China has the lowest at 2.179167.
+
+## Bar Graph of the mean
+
+- This bar graphy shows the average inflation rate of each country, USA, Canada, China, India, Mexico, and Russia
+
+```{r meanBarGraph}
+library(ggplot2)
+ggplot(meanDF, aes(x = country, y = means)) + geom_bar(stat = "identity", width = .5, fill = "tomato3")+ labs(title = "Ordered Bar Chart", subtitle = "Country vs. Means") + theme(axis.text.x = element_text(angle = 65, vjust = 0.6))
+```
+
+
+
+
+
+## Standard Deviation of the Inflation Rates 
+
+```{r stdDevOfInflationRates, echo = TRUE}
+
+USAsd = sd(USInflation) 
+CanadaSD = sd(CanadaInflation) 
+ChinaSD = sd(ChinaInflation) 
+IndiaSD = sd(IndiaInflation) 
+MexicoSD = sd(MexicoInflation) 
+RussiaSD = sd(RussiaInflation) 
+
+InflationStdDevs <- c(USAsd, CanadaSD, ChinaSD, IndiaSD, MexicoSD, RussiaSD)
+
+stdDevDF <- data.frame(country = c("USA", "Canada", "China", "India", "Mexico", "Russia"), stdDev = InflationStdDevs)
+```
+
+## Bar Graph of Standard Deviation of the Inflation Rates 
+
+- Here is a bar graph of the standard deviations 
+```{r stdDevOfInflationRatesPlot}
+ggplot(stdDevDF, aes(x = country, y = stdDev, fill = country)) + geom_bar(stat = "identity") + geom_text(aes(label = round(stdDev, digits = 3)), vjust = -0.3) 
+```
+
+## Summary of the data
+
+- Standard deviation (represented as $\sigma$) is the measure of how spread out a set of values are. 
+- A higher standard deviation indicates more variability in the values of a sample. 
+- Russia has the highest standard deviation of the group, meaning its inflation values are more spread out than the others. 
+
+## Conclusion 
+
+- It can be seen that political and global events have a lot of effect on the countries that were chosen.
+- The maximum and minimum inflation rates being effected by global issues or conflicts, such as pandemics, recessions, and presidential elections
+- The mean showcases the average of those years between 2000 and 2024 and show what percentage the people were paying
+- However, the standard deviation might be the most important piece of data
+- The deviation shows how the inflation rates changed over the years and how much they changed throughout, which is important because data and information can be seen from that.
+
