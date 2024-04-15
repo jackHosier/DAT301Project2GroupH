@@ -1,6 +1,6 @@
 ---
-title: "DAT301Project1"
-author: "Jack Hosier"
+title: "DAT301Project2"
+author: "Jack Hosier, Ben DelaFuente, Charlotte Farrell"
 date: "2024-02-28"
 output: pdf_document
 ---
@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Contributions 
 
-- Jack Hosier: Min Graphs, Std Dev Graphs, Research for data points, creating the files 
-- Ben Delafuente: Max Graphs 
-- Charlotte Farrell: Mean Graphs and research related to that 
+- Jack Hosier: creating the files and converting them to Python
+- Ben Delafuente:  
+- Charlotte Farrell: 
 
-```{r data source}
+```{python data source}
 
 #downloading the dataset for us to use in this project 
 inflationDF = read.csv("global_inflation_data.csv",sep=",",header=TRUE)
