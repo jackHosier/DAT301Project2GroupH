@@ -5,7 +5,7 @@ All other teammates, please list your contributions here
 
 Jack Hosier: Converted existing R code to Python 
 
-Ben Delafuente: {insert what you want to do} 
+Ben Delafuente: Resorting data and adding locations based on regions 
 
 Charlotte: Linear Regression 
 
