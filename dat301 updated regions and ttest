@@ -1,5 +1,7 @@
 #----------------------------------------------------------------------------updated
 import pandas as pd
+import scipy.stats as stats 
+
 inflationData = pd.read_csv("global_inflation_data.csv",sep=",")
 
 inflationDF = pd.DataFrame(inflationData)
