@@ -20,6 +20,7 @@ regions = {
 }
 
 # Create variables for the average inflation rate of each region
+# Does this not work
 AfricaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Africa'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
 EuropeRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Europe'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
 PacificRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Pacific'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
