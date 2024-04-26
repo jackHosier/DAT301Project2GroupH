@@ -71,9 +71,97 @@ plot_line_graph('Central America', CentralAmericaRegionInflation)
 plot_line_graph('North America', NorthAmericaRegionInflation)
 
 #--------------------------------------------------------
+#Max of Regions
+AfricaRegionInflationMax = AfricaRegionInflation.max()
+print(AfricaRegionInflationMax)
+EuropeRegionInflationMax = EuropeRegionInflation.max()
+print(EuropeRegionInflationMax)
+PacificRegionInflationMax = PacificRegionInflation.max()
+print(PacificRegionInflationMax)
+AsiaRegionInflationMax = AsiaRegionInflation.max()
+print(AsiaRegionInflationMax)
+MiddleEastRegionInflationMax = MiddleEastRegionInflation.max()
+print(MiddleEastRegionInflationMax)
+SouthAmericaRegionInflationMax = SouthAmericaRegionInflation.max()
+print(SouthAmericaRegionInflationMax)
+CentralAmericaRegionInflationMax = CentralAmericaRegionInflation.max()
+print(CentralAmericaRegionInflationMax)
+NorthAmericaRegionInflationMax = NorthAmericaRegionInflation.max()
+print(NorthAmericaRegionInflationMax)
+
+#bar graph of Maxs
+
+Max_inflation_rates = np.array([AfricaRegionInflationMax, EuropeRegionInflationMax, PacificRegionInflationMax, AsiaRegionInflationMax, MiddleEastRegionInflationMax, SouthAmericaRegionInflationMax, CentralAmericaRegionInflationMax, NorthAmericaRegionInflationMax])
+Max_df = pd.DataFrame({'regions': ['Africa', 'Europe', 'Pacific', 'Asia', 'Middle East', 'South America', 'Central America', 'North America'], 'rates': Max_inflation_rates})
+
+plt.figure(figsize=(10, 6))
+max_inflation_df.plot(kind='bar', x='regions', y='rates', rot=0, color='red')
+plt.title('Maximum Inflation Rates')
+plt.xlabel('Region')
+plt.ylabel('Inflation Rate')
+plt.show()
+
+
+#Min of Regions
+AfricaRegionInflationMin = AfricaRegionInflation.min()
+print(AfricaRegionInflationMin)
+EuropeRegionInflationMin = EuropeRegionInflation.min()
+print(EuropeRegionInflationMin)
+PacificRegionInflationMin = PacificRegionInflation.min()
+print(PacificRegionInflationMin)
+AsiaRegionInflationMin = AsiaRegionInflation.min()
+print(AsiaRegionInflationMin)
+MiddleEastRegionInflationMin = MiddleEastRegionInflation.min()
+print(MiddleEastRegionInflationMin)
+SouthAmericaRegionInflationMin = SouthAmericaRegionInflation.min()
+print(SouthAmericaRegionInflationMin)
+CentralAmericaRegionInflationMin = CentralAmericaRegionInflation.min()
+print(CentralAmericaRegionInflationMin)
+NorthAmericaRegionInflationMin = NorthAmericaRegionInflation.min()
+print(NorthAmericaRegionInflationMin)
+
+#bar graph of Mins
+
+Min_inflation_rates = np.array([AfricaRegionInflationMin, EuropeRegionInflationMin, PacificRegionInflationMin, AsiaRegionInflationMin, MiddleEastRegionInflationMin, SouthAmericaRegionInflationMin, CentralAmericaRegionInflationMin, NorthAmericaRegionInflationMin])
+Min_df = pd.DataFrame({'regions': ['Africa', 'Europe', 'Pacific', 'Asia', 'Middle East', 'South America', 'Central America', 'North America'], 'Mins': Min_inflation_rates})
+
+plt.figure(figsize=(10, 6))
+min_inflation_df.plot(kind='bar', x='regions', y='rates', rot=0)
+plt.title('Minimum Inflation Rates')
+plt.xlabel('Region')
+plt.ylabel('Inflation Rate')
+plt.show()
+
+
 #mean of Regions
 AfricaRegionInflationMean = AfricaRegionInflation.mean()
 print(AfricaRegionInflationMean)
+EuropeRegionInflationMean = EuropeRegionInflation.mean()
+print(EuropeRegionInflationMean)
+PacificRegionInflationMean = PacificRegionInflation.mean()
+print(PacificRegionInflationMean)
+AsiaRegionInflationMean = AsiaRegionInflation.mean()
+print(AsiaRegionInflationMean)
+MiddleEastRegionInflationMean = MiddleEastRegionInflation.mean()
+print(MiddleEastRegionInflationMean)
+SouthAmericaRegionInflationMean = SouthAmericaRegionInflation.mean()
+print(SouthAmericaRegionInflationMean)
+CentralAmericaRegionInflationMean = CentralAmericaRegionInflation.mean()
+print(CentralAmericaRegionInflationMean)
+NorthAmericaRegionInflationMean = NorthAmericaRegionInflation.mean()
+print(NorthAmericaRegionInflationMean)
+
+#bar graph of means
+
+mean_inflation_rates = np.array([AfricaRegionInflationMean, EuropeRegionInflationMean, PacificRegionInflationMean, AsiaRegionInflationMean, MiddleEastRegionInflationMean, SouthAmericaRegionInflationMean, CentralAmericaRegionInflationMean, NorthAmericaRegionInflationMean])
+mean_df = pd.DataFrame({'regions': ['Africa', 'Europe', 'Pacific', 'Asia', 'Middle East', 'South America', 'Central America', 'North America'], 'means': mean_inflation_rates})
+
+plt.figure(figsize=(10, 6))
+mean_df.plot(kind='bar', x='regions', y='means', rot=65, width=0.5, color='green')
+plt.title('Mean Inflation Rates')
+plt.xlabel('Region')
+plt.ylabel('Inflation Rate')
+plt.show()
 
 # perform one sample t-test 
 AfricaTest = stats.ttest_1samp(a=AfricaRegionInflation, popmean=10) 
