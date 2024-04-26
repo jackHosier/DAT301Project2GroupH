@@ -1,0 +1,71 @@
+#----------------------------------------------------------------------------updated
+import pandas as pd
+inflationData = pd.read_csv("global_inflation_data.csv",sep=",")
+
+inflationDF = pd.DataFrame(inflationData)
+
+
+# Define the regions and their corresponding countries
+regions = {
+    'Africa': ['Nigeria', 'Ethiopia', 'Egypt', 'DR Congo', 'Tanzania', 'South Africa', 'Kenya', 'Uganda', 'Sudan', 'Algeria', 'Morocco', 'Angola', 'Ghana', 'Mozambique', 'Madagascar', "Côte d'Ivoire", 'Cameroon', 'Niger', 'Mali', 'Burkina Faso', 'Malawi', 'Zambia', 'Chad', 'Somalia', 'Senegal', 'Zimbabwe', 'Guinea', 'Rwanda', 'Benin', 'Burundi', 'Tunisia', 'South Sudan', 'Togo', 'Sierra Leone', 'Libya', 'Congo', 'Central African Republic', 'Liberia', 'Mauritania', 'Eritrea', 'Gambia', 'Botswana', 'Namibia', 'Gabon', 'Lesotho', 'Guinea-Bissau', 'Equatorial Guinea', 'Mauritius', 'Eswatini', 'Djibouti', 'Comoros', 'Cabo Verde', 'Sao Tome & Principe', 'Seychelles'],
+    'Europe': ['Russia', 'Germany', 'United Kingdom', 'France', 'Italy', 'Spain', 'Poland', 'Ukraine', 'Romania', 'Netherlands', 'Belgium', 'Sweden', 'Czech Republic (Czechia)', 'Greece', 'Portugal', 'Hungary', 'Belarus', 'Austria', 'Switzerland', 'Serbia', 'Bulgaria', 'Denmark', 'Slovakia', 'Finland', 'Norway', 'Ireland', 'Croatia', 'Moldova', 'Bosnia and Herzegovina', 'Albania', 'Lithuania', 'Slovenia', 'North Macedonia', 'Latvia', 'Estonia', 'Luxembourg', 'Montenegro', 'Malta', 'Iceland', 'Andorra', 'Liechtenstein', 'Monaco', 'San Marino', 'Holy See'],
+    'Pacific': ['Fiji', 'Micronesia', 'Australia', 'Kiribati', 'Marshall Islands', 'Tonga', 'Cook Islands', 'New Zealand', 'Samoa', 'Solomon Islands', 'French Polynesia', 'Palau', 'Nauru', 'Papua New Guinea', 'Tuvalu', 'Indonesia', 'New Caledonia', 'Niue', 'Malaysia', 'Brunei', 'Cambodia', 'Guam', 'Japan', 'Chile'],
+    'Asia': ['India', 'Japan', 'Myanmar', 'Indonesia', 'Afghanistan', 'Malaysia', 'Bangladesh', 'Cambodia', 'China', 'Laos', 'Thailand', 'Vietnam', 'Bhutan', 'Brunei', 'Maldives', 'Mongolia', 'Pakistan', 'Kazakhstan', 'Nepal', 'Sri Lanka', 'Yemen'],
+    'Middle East': ['Jordan', 'Bahrain', 'Iran', 'Iraq', 'Kuwait', 'Lebanon', 'Saudi Arabia', 'United Arab Emirates', 'Oman', 'Syria', 'Yemen', 'Egypt', 'Israel', 'Qatar', 'Palestine', 'Turkey', 'Algeria', 'Cyprus', 'Libya', 'Morocco', 'Tunisia', 'Afghanistan', 'Comoros'],
+    'South America': ['Argentina', 'Chile', 'Ecuador', 'Bolivia', 'Colombia', 'Uruguay', 'Brazil', 'Guyana', 'Peru', 'Venezuela', 'Paraguay', 'Suriname', 'French Guiana', 'Mexico', 'Nicaragua', 'Falkland Islands'],
+    'Central America': ['Belize', 'Costa Rica', 'El Salvador', 'Guatemala', 'Honduras', 'Nicaragua', 'Panama'],
+    'North America': ['Canada', 'Bahamas', 'Cuba', 'Mexico', 'Costa Rica', 'Jamaica', 'United States', 'Dominican Republic', 'Haiti', 'Panama', 'Dominica', 'Guatemala', 'Nicaragua', 'Grenada', 'Saint Kitts and Nevis', 'Trinidad and Tobago', 'Saint Lucia', 'Greenland', 'Barbados', 'Honduras']
+}
+
+# Create variables for the average inflation rate of each region
+AfricaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Africa'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+EuropeRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Europe'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+PacificRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Pacific'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+AsiaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Asia'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+MiddleEastRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Middle East'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+SouthAmericaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['South America'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+CentralAmericaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['Central America'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+NorthAmericaRegionInflation = inflationDF[inflationDF['country_name'].isin(regions['North America'])][inflationDF.columns[inflationDF.columns.str.contains('20')]].mean()
+#----------------------------------------------------------------------------updated
+
+
+#Rates function for each region
+import matplotlib.pyplot as plt
+
+# Function to create line graph for a region
+def plot_line_graph(region_name, inflation_data):
+    inflation_data = inflation_data.to_frame().transpose()  # Convert Series to DataFrame
+    years = [int(year) % 100 for year in inflation_data.columns]  # Extract last two digits of the year
+    plt.plot(years, inflation_data.iloc[0], marker='o', label=region_name)
+    plt.title(f'Inflation Rate Trend in {region_name} (2000-2024)')
+    plt.xlabel('Year')
+    plt.ylabel('Inflation Rate')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+#PLOTS OF ALL REGIONS
+# Plot inflation trend for Africa
+plot_line_graph('Africa', AfricaRegionInflation)
+
+#Europe
+plot_line_graph('Europe', EuropeRegionInflation)
+
+#Pacific
+plot_line_graph('Pacific', PacificRegionInflation)
+
+#Asia
+plot_line_graph('Asia', AsiaRegionInflation)
+
+#Middle East
+plot_line_graph('Middle East', MiddleEastRegionInflation)
+
+#South America
+plot_line_graph('South America', SouthAmericaRegionInflation)
+
+#Central America
+plot_line_graph('Central America', CentralAmericaRegionInflation)
+
+#North America
+plot_line_graph('North America', NorthAmericaRegionInflation)
+
+#--------------------------------------------------------
