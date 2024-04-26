@@ -69,3 +69,24 @@ plot_line_graph('Central America', CentralAmericaRegionInflation)
 plot_line_graph('North America', NorthAmericaRegionInflation)
 
 #--------------------------------------------------------
+#mean of Regions
+AfricaRegionInflationMean = AfricaRegionInflation.mean()
+print(AfricaRegionInflationMean)
+
+# perform one sample t-test 
+AfricaTest = stats.ttest_1samp(a=AfricaRegionInflation, popmean=10) 
+print(AfricaTest)
+EuropeTest = stats.ttest_1samp(a=EuropeRegionInflation, popmean=20) 
+print(EuropeTest)
+PacificTest = stats.ttest_1samp(a=PacificRegionInflation, popmean=40) 
+print(PacificTest)
+AsiaTest = stats.ttest_1samp(a=AsiaRegionInflation, popmean=20) 
+print(AsiaTest)
+MiddleEastTest = stats.ttest_1samp(a=MiddleEastRegionInflation, popmean=20) 
+print(MiddleEastTest)
+SouthAmericanTest = stats.ttest_1samp(a=SouthAmericaRegionInflation, popmean=10) 
+print(SouthAmericanTest)
+CentralAmericaTest = stats.ttest_1samp(a=CentralAmericaRegionInflation, popmean=15) 
+print(CentralAmericaTest)
+NorthAmericaTest = stats.ttest_1samp(a=NorthAmericaRegionInflation, popmean=30) 
+print(NorthAmericaTest)
