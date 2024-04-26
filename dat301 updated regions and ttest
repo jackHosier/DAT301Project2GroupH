@@ -1,6 +1,7 @@
 #----------------------------------------------------------------------------updated
 import pandas as pd
 import scipy.stats as stats 
+import matplotlib.pyplot as plt
 
 inflationData = pd.read_csv("global_inflation_data.csv",sep=",")
 
