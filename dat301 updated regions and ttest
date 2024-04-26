@@ -47,28 +47,44 @@ def plot_line_graph(region_name, inflation_data):
     plt.grid(True)
     plt.show()
 #PLOTS OF ALL REGIONS
-# Plot inflation trend for Africa
+#Africa
+#The max in this graph was in 2024, this was likely due to floods causing crop deaths. Fertilizer also went up in price.
+#With crop deaths food prices rose around the region and farmers had to make money back from the rise in fertilizer cost. 
 plot_line_graph('Africa', AfricaRegionInflation)
 
 #Europe
+#The max within the europe region was in 2023. This was around the time that Russia started the war with Ukraine. 
+#The war caused almost every europian economy to have inflation effects. This was also post pandemic which most likely had an affect.
 plot_line_graph('Europe', EuropeRegionInflation)
 
 #Pacific
+#The max for this year was in 2008. There was not much info besides a price surge in international commodity prices.
 plot_line_graph('Pacific', PacificRegionInflation)
 
 #Asia
+#The max inflation was in 2009. The reason for this was spontanious. Sources mentioned it was due to just price increases.
+#This was most likely just a price increase in everything and it caused a chain reaction of inflation.
 plot_line_graph('Asia', AsiaRegionInflation)
 
 #Middle East
+#The max inflation for this region was in 2022. The reason for this was Supply chain and transportation problems, elevated volatility, and rising energy, food, and commodity costs.
+#All around increases in daily necessities which caused a spike in inflation in the region.
 plot_line_graph('Middle East', MiddleEastRegionInflation)
 
 #South America
+#This was a very interesting graph and a heavy outlier out of all the regions.
+#In 2019, Venezuela had a sky rocketing 65,000 inflation. In the data it overshadowed all other countries. 
+#This was due because they printed much more money causing the cash value to decrease. 
 plot_line_graph('South America', SouthAmericaRegionInflation)
 
 #Central America
+#In 2008 Central America had hit the max inflation rate throughout the 21st century. 
+#This was because there was mass increases in food prices and economic expansion.
 plot_line_graph('Central America', CentralAmericaRegionInflation)
 
 #North America
+#Again in 2008 North America had also had its max inflation rate. 
+#During this time it was likely due to increases in gas prices, increases in real estate, and rise in the cost of food.
 plot_line_graph('North America', NorthAmericaRegionInflation)
 
 #--------------------------------------------------------
